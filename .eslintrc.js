@@ -23,6 +23,7 @@ module.exports = {
 	rules: {
 		"prettier/prettier": "error",
 		"simple-import-sort/imports": "error",
+		"simple-import-sort/exports": "error",
 		"@typescript-eslint/array-type": "error",
 		"@typescript-eslint/ban-types": "error",
 		"@typescript-eslint/consistent-type-assertions": "error",
