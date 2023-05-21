@@ -49,3 +49,9 @@ repos:
             pass_filenames: false
             entry: npm run test
             language: node
+
+          - id: nyc
+            name: coverage
+            pass_filenames: false
+            entry: npm run coverage
+            language: node

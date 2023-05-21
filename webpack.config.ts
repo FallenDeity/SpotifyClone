@@ -1,6 +1,7 @@
-const path = require("path");
+import * as path from "path";
 
 module.exports = {
+	target: "node",
 	mode: "production",
 	entry: "./src/index.ts",
 	output: {
@@ -8,7 +9,7 @@ module.exports = {
 		filename: "main.js",
 	},
 	resolve: {
-		extensions: [".ts"],
+		extensions: [".ts", ".js", ".tsx", ".jsx"],
 	},
 	stats: {
 		errorDetails: true,

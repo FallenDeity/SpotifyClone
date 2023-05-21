@@ -131,3 +131,5 @@ dist
 # Ide
 .idea
 .vscode
+
+coverage/

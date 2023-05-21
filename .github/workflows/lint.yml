@@ -30,3 +30,6 @@ jobs:
 
             - name: Test with mocha
               run: npm run test
+
+            - name: Code coverage with nyc
+              run: npm run coverage

@@ -17,14 +17,16 @@
 		"prettier:fix": "prettier --write .",
 		"compile": "tsc",
 		"compile-watch": "tsc --watch",
-		"compile-and-run": "npm run compile && node dist/index.js"
+		"compile-and-run": "npm run compile && node dist/index.js",
+		"coverage": "nyc npm run test"
 	},
 	"pre-commit": [
 		"lint:fix",
 		"prettier:fix",
 		"compile",
 		"build-production",
-		"test"
+		"test",
+		"coverage"
 	],
 	"keywords": [],
 	"author": "FallenDeity",
@@ -39,6 +41,7 @@
 		"eslint-plugin-prettier": "^4.2.1",
 		"eslint-plugin-simple-import-sort": "^10.0.0",
 		"mocha": "^10.2.0",
+		"nyc": "^15.1.0",
 		"pre-commit": "^1.2.2",
 		"prettier": "^2.8.8",
 		"ts-loader": "^9.4.2",

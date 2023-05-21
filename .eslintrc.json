@@ -1,26 +1,26 @@
-module.exports = {
-	root: true,
-	env: {
-		browser: true,
-		commonjs: true,
-		es2021: true,
-		node: true,
+{
+	"root": true,
+	"env": {
+		"browser": true,
+		"commonjs": true,
+		"es2021": true,
+		"node": true
 	},
-	extends: [
+	"extends": [
 		"eslint:recommended",
 		"plugin:@typescript-eslint/recommended",
 		"plugin:@typescript-eslint/recommended-requiring-type-checking",
 		"plugin:@typescript-eslint/strict",
-		"plugin:prettier/recommended",
+		"plugin:prettier/recommended"
 	],
-	overrides: [],
-	parser: "@typescript-eslint/parser",
-	parserOptions: {
-		ecmaVersion: "latest",
-		project: "./tsconfig.json",
+	"overrides": [],
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaVersion": "latest",
+		"project": "./tsconfig.json"
 	},
-	plugins: ["@typescript-eslint", "prettier", "simple-import-sort"],
-	rules: {
+	"plugins": ["@typescript-eslint", "prettier", "simple-import-sort"],
+	"rules": {
 		"prettier/prettier": "error",
 		"simple-import-sort/imports": "error",
 		"simple-import-sort/exports": "error",
@@ -44,6 +44,6 @@ module.exports = {
 		"@typescript-eslint/triple-slash-reference": "error",
 		"@typescript-eslint/type-annotation-spacing": "error",
 		"no-var": "error",
-		"prefer-const": "error",
-	},
-};
+		"prefer-const": "error"
+	}
+}
