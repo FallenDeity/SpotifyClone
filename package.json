@@ -1,0 +1,50 @@
+{
+	"name": "typescript-boilerplate",
+	"version": "1.0.0",
+	"description": "A boilerplate for typescript projects.",
+	"main": "src/index.ts",
+	"scripts": {
+		"build-production": "webpack --mode production",
+		"build-dev": "webpack --mode development",
+		"build-watch": "webpack --mode development --watch",
+		"build-and-run": "npm run build && node dist/main .js",
+		"run": "node dist/main.js",
+		"test": "mocha --require ts-node/register tests/**/*.ts",
+		"lint": "eslint --ext .ts src",
+		"lint:fix": "eslint --ext .ts src --fix",
+		"prettier": "prettier .",
+		"prettier:fix": "prettier --write .",
+		"compile": "tsc",
+		"compile-watch": "tsc --watch",
+		"compile-and-run": "npm run compile && node dist/index.js"
+	},
+	"keywords": [],
+	"author": "FallenDeity",
+	"license": "MIT",
+	"devDependencies": {
+		"@types/mocha": "^10.0.1",
+		"@types/node": "^20.2.1",
+		"@typescript-eslint/eslint-plugin": "^5.59.6",
+		"@typescript-eslint/parser": "^5.59.6",
+		"eslint": "^7.32.0",
+		"eslint-config-prettier": "^7.2.0",
+		"eslint-plugin-prettier": "^4.2.1",
+		"eslint-plugin-simple-import-sort": "^10.0.0",
+		"mocha": "^10.2.0",
+		"prettier": "^2.8.8",
+		"ts-loader": "^9.4.2",
+		"ts-node": "^10.9.1",
+		"typescript": "^5.0.4",
+		"webpack": "^5.83.1",
+		"webpack-cli": "^5.1.1"
+	},
+	"prettier": {
+		"trailingComma": "es5",
+		"tabWidth": 4,
+		"useTabs": true,
+		"semi": true,
+		"printWidth": 120,
+		"bracketSpacing": true,
+		"bracketSameLine": true
+	}
+}
