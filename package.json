@@ -3,6 +3,7 @@
 	"version": "1.0.0",
 	"description": "A boilerplate for typescript projects.",
 	"main": "src/index.ts",
+	"rootDir": "src",
 	"scripts": {
 		"build-production": "webpack --mode production",
 		"build-dev": "webpack --mode development",
@@ -10,8 +11,8 @@
 		"build-and-run": "npm run build-production && node dist/main .js",
 		"run": "node dist/main.js",
 		"test": "mocha --require ts-node/register tests/**/*.ts",
-		"lint": "eslint --ext .ts src tests",
-		"lint:fix": "eslint --ext .ts src tests --fix",
+		"lint": "eslint --ext .ts src",
+		"lint:fix": "eslint --ext .ts src --fix",
 		"prettier": "prettier .",
 		"prettier:fix": "prettier --write .",
 		"compile": "tsc",
@@ -19,8 +20,8 @@
 		"compile-and-run": "npm run compile && node dist/index.js"
 	},
 	"pre-commit": [
-		"lint",
-		"prettier",
+		"lint:fix",
+		"prettier:fix",
 		"compile",
 		"build-production",
 		"test"

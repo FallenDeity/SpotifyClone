@@ -1,3 +1,5 @@
-export declare namespace Logger {
-    function log(message: string): void;
+export declare class Logger {
+    private readonly name;
+    constructor(name: string);
+    log(message: string): void;
 }
