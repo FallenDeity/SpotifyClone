@@ -19,6 +19,6 @@
 		"noUnusedParameters": true,
 		"noImplicitReturns": true
 	},
-	"include": ["src/**/*", "tests/**/*", ".eslintrc.js"],
+	"include": ["src/**/*", "tests/**/*", ".eslintrc.js", "webpack.config.ts",],
 	"exclude": ["node_modules", "dist", "types"]
 }
