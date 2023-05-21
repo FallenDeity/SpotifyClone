@@ -1,32 +1,32 @@
 name: Lint
 on:
-  push:
-  pull_request:
+    push:
+    pull_request:
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+    lint:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v2.5.2
-        with:
-          node-version: 18.x
-          cache: npm
-          cache-dependency-path: "**/package-lock.json"
+            - name: Setup Node.js
+              uses: actions/setup-node@v2.5.2
+              with:
+                  node-version: 18.x
+                  cache: npm
+                  cache-dependency-path: "**/package-lock.json"
 
-      - name: Install dependencies
-        run: npm install
+            - name: Install dependencies
+              run: npm install
 
-      - name: Lint with eslint
-        run: npm run lint
+            - name: Lint with eslint
+              run: npm run lint
 
-      - name: Format with prettier
-        run: npm run prettier
+            - name: Format with prettier
+              run: npm run prettier
 
-      - name: Build with webpack
-        run: npm run build
+            - name: Build with webpack
+              run: npm run build-production
 
-      - name: Test with mocha
-        run: npm run test
+            - name: Test with mocha
+              run: npm run test

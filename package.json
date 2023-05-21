@@ -7,7 +7,7 @@
 		"build-production": "webpack --mode production",
 		"build-dev": "webpack --mode development",
 		"build-watch": "webpack --mode development --watch",
-		"build-and-run": "npm run build && node dist/main .js",
+		"build-and-run": "npm run build-production && node dist/main .js",
 		"run": "node dist/main.js",
 		"test": "mocha --require ts-node/register tests/**/*.ts",
 		"lint": "eslint --ext .ts src tests",
@@ -18,6 +18,13 @@
 		"compile-watch": "tsc --watch",
 		"compile-and-run": "npm run compile && node dist/index.js"
 	},
+	"pre-commit": [
+		"lint",
+		"prettier",
+		"compile",
+		"build-production",
+		"test"
+	],
 	"keywords": [],
 	"author": "FallenDeity",
 	"license": "MIT",
@@ -31,6 +38,7 @@
 		"eslint-plugin-prettier": "^4.2.1",
 		"eslint-plugin-simple-import-sort": "^10.0.0",
 		"mocha": "^10.2.0",
+		"pre-commit": "^1.2.2",
 		"prettier": "^2.8.8",
 		"ts-loader": "^9.4.2",
 		"ts-node": "^10.9.1",

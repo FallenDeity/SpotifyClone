@@ -1,0 +1,45 @@
+repos:
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v4.3.0
+      hooks:
+          - id: check-yaml
+          - id: check-json
+          - id: check-ast
+          - id: sort-simple-yaml
+          - id: end-of-file-fixer
+          - id: trailing-whitespace
+            args:
+                - --markdown-linebreak-ext=md
+          - id: check-toml
+
+    - repo: https://github.com/pre-commit/pygrep-hooks
+      rev: v1.9.0
+      hooks:
+          - id: python-use-type-annotations
+          - id: python-check-blanket-noqa
+
+    - repo: local
+      hooks:
+          - id: prettier
+            name: format
+            pass_filenames: false
+            entry: npm run prettier:fix
+            language: node
+
+          - id: eslint
+            name: lint
+            pass_filenames: false
+            entry: npm run lint:fix
+            language: node
+
+          - id: webpack
+            name: build
+            pass_filenames: false
+            entry: npm run build-production
+            language: node
+
+          - id: mocha
+            name: test
+            pass_filenames: false
+            entry: npm run test
+            language: node

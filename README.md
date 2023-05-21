@@ -9,7 +9,7 @@ $ npm install
 # Build
 
 ```bash
-$ npm run build 
+$ npm run build
 ```
 
 Internally calls for webpack to build the project.

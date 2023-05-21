@@ -4,7 +4,6 @@
 		"target": "ES2021",
 		"sourceMap": true,
 		"outDir": "./dist",
-		"rootDir": "./src",
 		"declaration": true,
 		"declarationDir": "./types",
 		"removeComments": true,
@@ -19,6 +18,6 @@
 		"noUnusedParameters": true,
 		"noImplicitReturns": true
 	},
-	"include": ["src/**/*", "tests/**/*", ".eslintrc.js", "webpack.config.ts",],
+	"include": ["src/**/*", "tests/**/*", ".eslintrc.js", "webpack.config.ts"],
 	"exclude": ["node_modules", "dist", "types"]
 }
