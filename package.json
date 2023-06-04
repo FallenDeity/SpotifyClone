@@ -1,7 +1,7 @@
 {
-	"name": "typescript-boilerplate",
+	"name": "social-media-clone",
 	"version": "1.0.0",
-	"description": "A boilerplate for typescript projects.",
+	"description": "An social media clone.",
 	"main": "src/index.ts",
 	"rootDir": "src",
 	"scripts": {
@@ -58,5 +58,8 @@
 		"printWidth": 120,
 		"bracketSpacing": true,
 		"bracketSameLine": true
+	},
+	"dependencies": {
+		"winston": "^3.9.0"
 	}
 }

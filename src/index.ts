@@ -1,13 +1,4 @@
-import path from "path";
+import { Logger } from "./logging";
 
-export class Logger {
-	constructor(private readonly name: string) {}
-
-	log(message: string): void {
-		console.log(`[${new Date().toISOString()}] ${this.name}: ${message}`);
-	}
-}
-
-const filePath: string = path.relative(process.cwd(), __filename);
-const logger: Logger = new Logger(filePath);
-logger.log("Hello, world!");
+const logger: Logger = new Logger("MyLogger");
+logger.info("Hello, world!");
