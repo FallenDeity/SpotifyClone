@@ -32,16 +32,10 @@ repos:
             entry: npm run lint:fix
             language: node
 
-          - id: webpack
+          - id: next
             name: build
             pass_filenames: false
-            entry: npm run build-production
-            language: node
-
-          - id: tsc
-            name: compile
-            pass_filenames: false
-            entry: npm run compile
+            entry: npm run build
             language: node
 
           - id: mocha

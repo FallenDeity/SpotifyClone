@@ -5,26 +5,20 @@
 	"main": "src/index.ts",
 	"rootDir": "src",
 	"scripts": {
-		"build-production": "webpack --mode production",
-		"build-dev": "webpack --mode development",
-		"build-watch": "webpack --mode development --watch",
-		"build-and-run": "npm run build-production && node dist/main .js",
-		"run": "node dist/main.js",
 		"test": "mocha --require ts-node/register tests/**/*.ts",
 		"lint": "eslint --ext .ts src",
 		"lint:fix": "eslint --ext .ts src --fix",
 		"prettier": "prettier .",
 		"prettier:fix": "prettier --write .",
-		"compile": "tsc",
-		"compile-watch": "tsc --watch",
-		"compile-and-run": "npm run compile && node dist/index.js",
+		"dev": "next dev src",
+		"build": "next build",
+		"start": "next start",
 		"coverage": "nyc npm run test"
 	},
 	"pre-commit": [
 		"lint:fix",
 		"prettier:fix",
-		"compile",
-		"build-production",
+		"build",
 		"test",
 		"coverage"
 	],
@@ -36,14 +30,17 @@
 		"@types/node": "^20.2.1",
 		"@typescript-eslint/eslint-plugin": "^5.59.6",
 		"@typescript-eslint/parser": "^5.59.6",
+		"autoprefixer": "^10.4.14",
 		"eslint": "^7.32.0",
 		"eslint-config-prettier": "^7.2.0",
 		"eslint-plugin-prettier": "^4.2.1",
 		"eslint-plugin-simple-import-sort": "^10.0.0",
 		"mocha": "^10.2.0",
 		"nyc": "^15.1.0",
+		"postcss": "^8.4.24",
 		"pre-commit": "^1.2.2",
 		"prettier": "^2.8.8",
+		"tailwindcss": "^3.3.2",
 		"ts-loader": "^9.4.2",
 		"ts-node": "^10.9.1",
 		"typescript": "^5.0.4",
@@ -60,6 +57,10 @@
 		"bracketSameLine": true
 	},
 	"dependencies": {
+		"@types/react": "^18.2.8",
+		"next": "^13.4.4",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
 		"winston": "^3.9.0"
 	}
 }

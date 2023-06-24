@@ -3,7 +3,7 @@ import * as path from "path";
 module.exports = {
 	target: "node",
 	mode: "production",
-	entry: "./src/index.ts",
+	entry: "./src/app/page.tsx",
 	output: {
 		path: path.resolve(__dirname, "dist"),
 		filename: "main.js",

@@ -5,3 +5,4 @@ types/
 LICENSE
 package-lock.json
 README.md
+/package.json
