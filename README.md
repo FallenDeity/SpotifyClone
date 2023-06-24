@@ -1,8 +1,8 @@
 # Setup
 
 ```bash
-$ git clone https://github.com/FallenDeity/Typescript-Boilerplate
-$ cd Typescript-Boilerplate
+$ git clone https://github.com/FallenDeity/react-next-tailwind-template
+$ cd react-next-tailwind-template
 $ npm install
 ```
 
@@ -12,7 +12,7 @@ $ npm install
 $ npm run build
 ```
 
-Internally calls for webpack to build the project.
+Internally calls for next to build the project.
 
 # Test
 
@@ -25,10 +25,10 @@ Internally calls for mocha to run the tests.
 # Run
 
 ```bash
-$ npm run build-and-run
+$ npm run dev
 ```
 
-Internally calls for webpack to build the project and then runs the built project.
+Internally calls for next to run the project in development mode.
 
 # Others
 
