@@ -25,9 +25,6 @@ jobs:
             - name: Format with prettier
               run: npm run prettier
 
-            - name: Build with webpack
-              run: npm run dev
-
             - name: Test with mocha
               run: npm run test
 
