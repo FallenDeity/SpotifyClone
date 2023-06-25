@@ -10,7 +10,7 @@
 		"lint:fix": "eslint --ext .ts src --fix",
 		"prettier": "prettier .",
 		"prettier:fix": "prettier --write .",
-		"dev": "next dev src",
+		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
 		"coverage": "nyc npm run test"
