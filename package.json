@@ -1,7 +1,7 @@
 {
-	"name": "social-media-clone",
+	"name": "spotify-clone",
 	"version": "1.0.0",
-	"description": "An social media clone.",
+	"description": "A Spotify clone built with Next.js and Tailwind CSS.",
 	"main": "src/index.ts",
 	"rootDir": "src",
 	"scripts": {
@@ -28,6 +28,7 @@
 	"devDependencies": {
 		"@types/mocha": "^10.0.1",
 		"@types/node": "^20.2.1",
+		"@types/spotify-web-api-node": "^5.0.7",
 		"@typescript-eslint/eslint-plugin": "^5.59.6",
 		"@typescript-eslint/parser": "^5.59.6",
 		"autoprefixer": "^10.4.14",
@@ -57,10 +58,20 @@
 		"bracketSameLine": true
 	},
 	"dependencies": {
+		"@heroicons/react": "^2.0.18",
+		"@radix-ui/react-slider": "^1.1.2",
+		"@tailwindcss/line-clamp": "^0.4.4",
 		"@types/react": "^18.2.8",
 		"next": "^13.4.4",
+		"next-auth": "^4.22.1",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
+		"react-icons": "^4.10.1",
+		"recoil": "^0.7.7",
+		"sharp": "^0.32.1",
+		"spotify-web-api-node": "^5.0.2",
+		"tailwind-scrollbar": "^3.0.4",
+		"tailwind-scrollbar-hide": "^1.1.7",
 		"winston": "^3.9.0"
 	}
 }

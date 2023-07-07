@@ -1,3 +1,29 @@
+<p align="center"><img src="./public/logo.png" alt="Logo" width="300" height="300"></p>
+<h1 align="center">Spotify Clone</h1>
+<h4 align="center">A clone of Spotify built using React, Next.js, Tailwind CSS and Spotify API.</h4>
+
+# Features
+
+- [x] Authentication/Singup using Spotify.
+- [x] Get user's playlists.
+- [x] Get user's top artists.
+- [x] Get user's top tracks.
+- [x] Get user's recently played tracks.
+- [x] Get user's saved tracks.
+- [x] Responsive design.
+- [x] Dark mode.
+- [x] Search for tracks, artists, albums and playlists.
+- [x] Real time sync with Spotify client.
+- [x] Play/Pause/Next/Previous track.
+- [x] Shuffle/Repeat track.
+- [x] Playlists/Albums/Artists/Tracks page.
+- [x] [YouTube](https://www.youtube.com/watch?v=tQGSlapQ2dk) demo.
+
+# Demo
+
+![Demo](./public/demo.gif)
+
+
 # Setup
 
 ```bash
