@@ -21,7 +21,7 @@ export default function Slider({ value = 0, onChange }: SliderProps): React.JSX.
 			min={0}
 			max={100}
 			step={1}>
-			<RadixSlider.Track className="bg-neutral-600 relative grow rounded-full h-[3px]">
+			<RadixSlider.Track className="bg-neutral-600 relative grow rounded-full h-[.5vh]">
 				<RadixSlider.Range className="absolute bg-white rounded-full h-full" />
 			</RadixSlider.Track>
 			<RadixSlider.Thumb className="block w-2 h-2 bg-white rounded-full focus:outline-none shadow" />

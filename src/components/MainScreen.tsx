@@ -301,7 +301,7 @@ export default function MainScreen(): React.JSX.Element {
 			{!playlistContent && !playlistID && !search && (
 				<div className="flex flex-col flex-grow space-y-10 p-5">
 					{/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */}
-					{DailyMixContent && (
+					{DailyMixContent.length ? (
 						<>
 							<h1 className="text-3xl font-bold text-neutral-100 px-5">Daily Mixes</h1>
 							<div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-5 px-5">
@@ -330,8 +330,10 @@ export default function MainScreen(): React.JSX.Element {
 								))}
 							</div>
 						</>
+					) : (
+						<></>
 					)}
-					{featuredPlaylists && (
+					{featuredPlaylists ? (
 						<>
 							<h1 className="text-3xl font-bold text-neutral-100 px-5">Your Local Mixes</h1>
 							<div className="relative mt-5 z-0 grid auto-cols-[12rem] grid-flow-col gap-6 overflow-x-auto pt-2 scrollbar-hide px-5">
@@ -340,9 +342,11 @@ export default function MainScreen(): React.JSX.Element {
 								))}
 							</div>
 						</>
+					) : (
+						<></>
 					)}
 					{/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */}
-					{mixes && (
+					{mixes ? (
 						<>
 							<h1 className="text-3xl font-bold text-neutral-100 px-5">Your Top Mixes</h1>
 							<div className="relative mt-5 z-0 grid auto-cols-[12rem] grid-flow-col gap-6 overflow-x-auto pt-2 scrollbar-hide px-5">
@@ -351,8 +355,10 @@ export default function MainScreen(): React.JSX.Element {
 								))}
 							</div>
 						</>
+					) : (
+						<></>
 					)}
-					{recentlyPlayed && (
+					{recentlyPlayed?.length ? (
 						<>
 							<h1 className="text-3xl font-bold text-neutral-100 px-5">Recently Played</h1>
 							<div className="relative mt-5 z-0 grid auto-cols-[12rem] grid-flow-col gap-6 overflow-x-auto pt-2 scrollbar-hide px-5">
@@ -361,8 +367,10 @@ export default function MainScreen(): React.JSX.Element {
 								))}
 							</div>
 						</>
+					) : (
+						<></>
 					)}
-					{topArtists && (
+					{topArtists?.length ? (
 						<>
 							<h1 className="text-3xl font-bold text-neutral-100 px-5">Top Artists</h1>
 							<div className="relative mt-5 z-0 grid auto-cols-[12rem] grid-flow-col gap-6 overflow-x-auto pt-2 scrollbar-hide px-5">
@@ -371,6 +379,8 @@ export default function MainScreen(): React.JSX.Element {
 								))}
 							</div>
 						</>
+					) : (
+						<></>
 					)}
 				</div>
 			)}
@@ -406,7 +416,7 @@ export default function MainScreen(): React.JSX.Element {
 									{parseAnchorTags(playlistContent.description)}
 								</p>
 							)}
-							<div className="flex sm:hidden md:flex flex-row items-center space-x-2 mt-4">
+							<div className="hidden sm:flex flex-row items-center space-x-2 mt-4">
 								{user?.images && user.images[0]?.url && (
 									<Image
 										src={user.images[0].url}
@@ -422,6 +432,7 @@ export default function MainScreen(): React.JSX.Element {
 										{playlistContent.followers.total
 											.toString()
 											.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+										Followers
 									</p>
 								) : (
 									<p className="text-sm text-gray-200 font-bold">

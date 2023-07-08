@@ -70,6 +70,15 @@ export default function Player(): React.JSX.Element {
 			return () => clearInterval(interval);
 		}
 	}, [spotifyApi, trackID, session]);
+	const handlePlayPause = (): void => {
+		if (!trackID) return;
+		if (isPlaying) {
+			void spotifyApi.pause();
+		} else {
+			void spotifyApi.play();
+		}
+		setIsPlaying(!isPlaying);
+	};
 	return (
 		<div className="fixed bottom-0 sm:px-5 px-2 flex flex-row justify-between items-center bg-gradient-to-b from-black to-gray-900 w-full h-20 z-10">
 			<div className="flex flex-row items-center space-x-3">
@@ -85,10 +94,8 @@ export default function Player(): React.JSX.Element {
 					<div className="w-12 h-12 bg-gray-300 rounded-md" />
 				)}
 				<div className="flex flex-col">
-					<p className="text-sm text-gray-300 font-semibold w-[150px] truncate">
-						{Track?.name ?? "No Track"}
-					</p>
-					<p className="text-xs text-gray-400 w-[150px] truncate">
+					<p className="text-sm text-gray-300 font-semibold w-[9rem] truncate">{Track?.name ?? "No Track"}</p>
+					<p className="text-xs text-gray-400 w-[9rem] truncate">
 						{Track?.artists.map((artist) => artist.name).join(", ") ?? "No Artist"}
 					</p>
 				</div>
@@ -96,16 +103,41 @@ export default function Player(): React.JSX.Element {
 			<div className="flex-col items-center hidden sm:flex">
 				<div className="flex flex-row items-center space-x-3">
 					<BiShuffle
+						onClick={(): void => {
+							if (!trackID) return;
+							void spotifyApi.setShuffle(!isShuffle);
+							setIsShuffle(!isShuffle);
+						}}
 						className={`w-4 h-4 text-gray-300 cursor-pointer hover:text-white transition duration-300
 						${
 							/* eslint-disable-next-line @typescript-eslint/restrict-template-expressions */
 							isShuffle && "text-green-500"
 						}`}
 					/>
-					<AiFillStepBackward className="w-5 h-5 text-gray-300 cursor-pointer hover:text-white transition duration-300" />
-					<PlayIcon className="w-8 h-8 text-gray-300 cursor-pointer hover:text-white transition duration-300" />
-					<AiFillStepForward className="w-5 h-5 text-gray-300 cursor-pointer hover:text-white transition duration-300" />
+					<AiFillStepBackward
+						className="w-5 h-5 text-gray-300 cursor-pointer hover:text-white transition duration-300"
+						onClick={(): void => {
+							if (!trackID) return;
+							void spotifyApi.skipToPrevious();
+						}}
+					/>
+					<PlayIcon
+						className="w-8 h-8 text-gray-300 cursor-pointer hover:text-white transition duration-300"
+						onClick={handlePlayPause}
+					/>
+					<AiFillStepForward
+						className="w-5 h-5 text-gray-300 cursor-pointer hover:text-white transition duration-300"
+						onClick={(): void => {
+							if (!trackID) return;
+							void spotifyApi.skipToNext();
+						}}
+					/>
 					<RxLoop
+						onClick={(): void => {
+							if (!trackID) return;
+							void spotifyApi.setRepeat(!isRepeat ? "track" : "off");
+							setIsRepeat(!isRepeat);
+						}}
 						className={`w-4 h-4 text-gray-300 cursor-pointer hover:text-white transition duration-300
 						${
 							/* eslint-disable-next-line @typescript-eslint/restrict-template-expressions */
@@ -113,26 +145,45 @@ export default function Player(): React.JSX.Element {
 						}`}
 					/>
 				</div>
-				<div className="flex flex-row items-center space-x-3 mt-1 sm:w-[300px] md:w-[400px] lg:w-[500px]">
+				<div className="flex flex-row items-center space-x-3 mt-1 sm:w-[18rem] md:w-[25rem] lg:w-[32rem]">
 					<p className="text-xs text-gray-300">{millisecondsToMinutesAndSeconds(progressInterval)}</p>
-					<Slider value={Number((progressInterval / (Track?.duration_ms ?? 0)) * 100)} />
+					<Slider
+						value={Number((progressInterval / (Track?.duration_ms ?? 0)) * 100)}
+						onChange={(value): void => {
+							if (!trackID) return;
+							void spotifyApi.seek((Track?.duration_ms ?? 0) * (value / 100));
+							setProgressInterval((Track?.duration_ms ?? 0) * (value / 100));
+						}}
+					/>
 					<p className="text-xs text-gray-300">{millisecondsToMinutesAndSeconds(Track?.duration_ms ?? 0)}</p>
 				</div>
 			</div>
-			<div className="hidden sm:flex flex-row items-center space-x-3 sm:w-[100px] md:w-[130px]">
+			<div className="hidden sm:flex flex-row items-center space-x-3 sm:w-[6rem] md:w-[8rem]">
 				<HiQueueList
 					size={34}
 					className="text-gray-300 cursor-pointer hover:text-white transition duration-300"
 				/>
 				<VolumeIcon
 					size={34}
-					onClick={(): void => setVolume(volume > 0 ? 0 : 100)}
+					onClick={(): void => {
+						void spotifyApi.setVolume(volume === 0 ? 100 : 0);
+						setVolume(volume === 0 ? 100 : 0);
+					}}
 					className="text-gray-300 cursor-pointer hover:text-white transition duration-300"
 				/>
-				<Slider value={volume} />
+				<Slider
+					value={volume}
+					onChange={(value): void => {
+						void spotifyApi.setVolume(value);
+						setVolume(value);
+					}}
+				/>
 			</div>
 			<div className="flex flex-row items-center space-x-3 sm:hidden">
-				<PlayIcon className="w-8 h-8 text-gray-300 cursor-pointer hover:text-white transition duration-300" />
+				<PlayIcon
+					className="w-8 h-8 text-gray-300 cursor-pointer hover:text-white transition duration-300"
+					onClick={handlePlayPause}
+				/>
 			</div>
 		</div>
 	);

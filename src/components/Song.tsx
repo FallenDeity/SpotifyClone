@@ -4,6 +4,7 @@ import React from "react";
 import { useRecoilState } from "recoil";
 
 import { TrackIDAtomState } from "@/components/atoms/playlistAtom";
+import useSpotify from "@/hooks/useSpotify";
 
 function millisecondsToMinutesAndSeconds(ms: number): string {
 	const minutes = Math.floor(ms / 60000);
@@ -18,6 +19,7 @@ export default function Song({
 	track: SpotifyApi.PlaylistTrackObject;
 	index: number;
 }): React.JSX.Element {
+	const spotifyApi = useSpotify();
 	const setTrackID = useRecoilState(TrackIDAtomState)[1];
 	return (
 		<>
@@ -25,6 +27,7 @@ export default function Song({
 				key={track.track?.id}
 				onClick={(): void => {
 					setTrackID(track.track?.id ?? "");
+					void spotifyApi.addToQueue(track.track?.uri ?? "");
 				}}
 				className="flex flex-row items-center justify-between px-2 py-2 hover:bg-white hover:bg-opacity-10 transition duration-300 cursor-pointer">
 				<div className="flex flex-row items-center space-x-5">
@@ -42,8 +45,10 @@ export default function Song({
 						/>
 					)}
 					<div className="flex flex-col items-start justify-center">
-						<p className="text-sm text-gray-200 font-bold truncate w-[200px]">{track.track?.name}</p>
-						<p className="text-xs text-gray-300 w-[200px] truncate">
+						<p className="text-sm text-gray-200 font-bold truncate w-[8rem] sm:w-[10rem] md:w-[15rem]">
+							{track.track?.name}
+						</p>
+						<p className="text-xs text-gray-300 w-[8rem] sm:w-[10rem] md:w-[15rem] truncate">
 							{track.track?.artists.map((artist) => artist.name).join(", ")}
 						</p>
 					</div>

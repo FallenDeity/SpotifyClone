@@ -52,7 +52,7 @@ export default function SideBar(): React.JSX.Element {
 	React.useEffect((): void => {
 		for (const playlist of playlists) {
 			if (RegExp(/Daily Mix [1-6]/).exec(playlist.name)) {
-				const names = dailyMixContent.map((item) => item.name);
+				const names = dailyMixContent.map((item) => item.name && item.owner.id === "spotify" && item.name);
 				if (!names.includes(playlist.name)) {
 					setDailyMixContent((dailyMixContent) => [...dailyMixContent, playlist]);
 				}
@@ -60,7 +60,7 @@ export default function SideBar(): React.JSX.Element {
 		}
 	}, [playlists, dailyMixContent, setDailyMixContent]);
 	return (
-		<div className="text-sm hidden sm:flex flex-col sm:w-56 md:w-64 lg:w-80">
+		<div className="text-sm hidden sm:flex flex-col">
 			<div className="space-y-3 bg-opacity-10 bg-white rounded-md p-3">
 				<button
 					onClick={(): void => {
@@ -112,8 +112,7 @@ export default function SideBar(): React.JSX.Element {
 					<PlusIcon className="w-6 h-6 hover:text-white cursor-pointer" />
 				</div>
 			</div>
-			{/* Playlist */}
-			<div className="bg-white flex-grow bg-opacity-10 space-y-3 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600 p-4 rounded-b">
+			<div className="bg-white flex-grow bg-opacity-10 space-y-3 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600 p-4 rounded-b sm:w-[30vw] lg:w-[25vw]">
 				{playlists.map((data) => (
 					<div
 						key={data.id}
