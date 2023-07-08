@@ -8,6 +8,7 @@ import {
 	HomeIcon,
 	MagnifyingGlassIcon,
 } from "@heroicons/react/24/solid";
+import { CogIcon, LogOutIcon, UserIcon } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
@@ -22,6 +23,14 @@ import {
 	playlistHistoryIndexAtomState,
 	searchAtomState,
 } from "@/components/atoms/playlistAtom";
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuLabel,
+	DropdownMenuSeparator,
+	DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { UserSession } from "@/utils/models";
 
 export default function Header({ color }: { color: { headerColor: string } }): React.JSX.Element {
@@ -99,20 +108,41 @@ export default function Header({ color }: { color: { headerColor: string } }): R
 			<div className="flex-row items-center space-x-2 flex px-5">
 				{/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */}
 				{session ? (
-					<div
-						className="flex flex-row items-center space-x-3 cursor-pointer bg-neutral-600 bg-opacity-50 rounded-full p-1 hover:bg-opacity-70 transition duration-300"
-						/* eslint-disable-next-line @typescript-eslint/no-misused-promises */
-						onClick={async (): Promise<void> => await signOut()}>
-						<Image
-							src={session.user?.image ?? "/user.png"}
-							className="rounded-full object-contain"
-							width={30}
-							height={30}
-							alt={"User Image"}
-						/>
-						<p className="text-sm text-gray-200">{session.user?.name}</p>
-						<ChevronDownIcon className="w-4 h-4 text-gray-200" />
-					</div>
+					<DropdownMenu>
+						<DropdownMenuTrigger asChild>
+							<div className="flex flex-row items-center space-x-3 cursor-pointer bg-neutral-600 bg-opacity-50 rounded-full p-1 hover:bg-opacity-70 transition duration-300">
+								<Image
+									src={session.user?.image ?? "/user.png"}
+									className="rounded-full object-contain"
+									width={30}
+									height={30}
+									alt={"User Image"}
+								/>
+								<p className="text-sm text-gray-200">{session.user?.name}</p>
+								<ChevronDownIcon className="w-4 h-4 text-gray-200" />
+							</div>
+						</DropdownMenuTrigger>
+						<DropdownMenuContent className="bg-neutral-800 rounded-lg border-0">
+							<DropdownMenuLabel className="text-sm text-gray-200 text-center font-semibold">
+								Account
+							</DropdownMenuLabel>
+							<DropdownMenuSeparator className="bg-neutral-600" />
+							<DropdownMenuItem className="text-sm text-gray-200 focus:bg-neutral-600 focus:text-white space-x-3">
+								<UserIcon className="w-4 h-4 mr-2" />
+								Profile
+							</DropdownMenuItem>
+							<DropdownMenuItem className="text-sm text-gray-200 focus:bg-neutral-600 focus:text-white space-x-3">
+								<CogIcon className="w-4 h-4 mr-2" />
+								Settings
+							</DropdownMenuItem>
+							<DropdownMenuItem
+								className="text-sm text-gray-200 focus:bg-neutral-600 focus:text-white space-x-3"
+								onClick={(): void => void signOut()}>
+								<LogOutIcon className="w-4 h-4 mr-2" />
+								Logout
+							</DropdownMenuItem>
+						</DropdownMenuContent>
+					</DropdownMenu>
 				) : (
 					<button
 						className="px-4 py-2 font-semibold text-sm text-gray-200 rounded-full hover:bg-white hover:text-black transition duration-300"
