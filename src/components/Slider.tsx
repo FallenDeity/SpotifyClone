@@ -14,17 +14,17 @@ export default function Slider({ value = 0, onChange }: SliderProps): React.JSX.
 	};
 	return (
 		<RadixSlider.Root
-			className="relative flex items-center select-none touch-none w-full h-5"
+			className="relative flex h-5 w-full touch-none select-none items-center"
 			defaultValue={[0]}
 			onValueChange={handleChange}
 			value={[value]}
 			min={0}
 			max={100}
 			step={1}>
-			<RadixSlider.Track className="bg-neutral-600 relative grow rounded-full h-[.5vh]">
-				<RadixSlider.Range className="absolute bg-white rounded-full h-full" />
+			<RadixSlider.Track className="relative h-[.5vh] grow rounded-full bg-neutral-600">
+				<RadixSlider.Range className="absolute h-full rounded-full bg-white" />
 			</RadixSlider.Track>
-			<RadixSlider.Thumb className="block w-2 h-2 bg-white rounded-full focus:outline-none shadow" />
+			<RadixSlider.Thumb className="block h-2 w-2 rounded-full bg-white shadow focus:outline-none" />
 		</RadixSlider.Root>
 	);
 }

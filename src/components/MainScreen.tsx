@@ -1,5 +1,6 @@
 "use client";
 
+import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import React from "react";
@@ -246,19 +247,22 @@ export default function MainScreen(): React.JSX.Element {
 	return (
 		<div
 			onScroll={scrollHandler}
-			className="flex flex-col flex-grow sm:ml-3 bg-white bg-opacity-10 rounded-md overflow-y-auto scrollbar-hide">
+			className="flex flex-grow flex-col overflow-y-auto rounded-md bg-white bg-opacity-10 scrollbar-hide sm:ml-3">
 			<Header color={playlistID ? color : { headerColor: "" }} />
 			{search && (
 				<>
-					<div className="flex flex-col flex-grow items-center mt-5">
-						<input
-							onChange={HandleSearch}
-							className="text-neutral-100 truncate px-5 bg-neutral-500 bg-opacity-10 rounded-full w-4/5 sm:w-2/3 p-2"
-							type="text"
-							placeholder="Search for a song, artist, or album"
-						/>
+					<div className="mt-5 flex flex-grow flex-col items-center">
+						<div className="relative w-4/5 sm:w-2/3">
+							<MagnifyingGlassIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 transform text-neutral-100" />
+							<input
+								onChange={HandleSearch}
+								className="w-full truncate rounded-full bg-neutral-500 bg-opacity-10 p-2 px-5 pl-10 text-neutral-100"
+								type="text"
+								placeholder="Search for a song, artist, or album"
+							/>
+						</div>
 					</div>
-					<div className="flex flex-col flex-grow items-center mt-5 overflow-y-auto scrollbar-hide rounded-lg">
+					<div className="mt-5 flex flex-grow flex-col items-center overflow-y-auto scrollbar-hide">
 						{searchResults?.tracks &&
 							searchResults.tracks.items.map((item) => (
 								<SearchCard item={item} callback={(): void => setTrackID(item.id)} key={item.id} />
@@ -299,12 +303,12 @@ export default function MainScreen(): React.JSX.Element {
 				</>
 			)}
 			{!playlistContent && !playlistID && !search && (
-				<div className="flex flex-col flex-grow space-y-10 p-5">
+				<div className="flex flex-grow flex-col space-y-10 p-5">
 					{/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */}
 					{DailyMixContent.length ? (
 						<>
-							<h1 className="text-3xl font-bold text-neutral-100 px-5">Daily Mixes</h1>
-							<div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-5 px-5">
+							<h1 className="px-5 text-3xl font-bold text-neutral-100">Daily Mixes</h1>
+							<div className="grid gap-5 px-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 								{DailyMixContent.map((item) => (
 									<div
 										key={item.id}
@@ -314,14 +318,14 @@ export default function MainScreen(): React.JSX.Element {
 											setPlaylistContent(undefined);
 											setHeaderOpacity("bg-opacity-100");
 										}}
-										className="flex flex-row space-x-5 bg-neutral-500 bg-opacity-10 rounded-md hover:bg-opacity-20 cursor-pointer transition duration-200 ease-in-out">
+										className="flex cursor-pointer flex-row space-x-5 rounded-md bg-neutral-500 bg-opacity-10 transition duration-200 ease-in-out hover:bg-opacity-20">
 										<Image
 											src={item.images[0].url}
 											width={50}
 											height={50}
 											unoptimized={true}
 											alt={item.name}
-											className="rounded-md w-20 h-20"
+											className="h-20 w-20 rounded-md"
 										/>
 										<div className="flex flex-col justify-center">
 											<h1 className="text-xl font-bold text-neutral-100">{item.name}</h1>
@@ -335,8 +339,8 @@ export default function MainScreen(): React.JSX.Element {
 					)}
 					{featuredPlaylists ? (
 						<>
-							<h1 className="text-3xl font-bold text-neutral-100 px-5">Your Local Mixes</h1>
-							<div className="relative mt-5 z-0 grid auto-cols-[12rem] grid-flow-col gap-6 overflow-x-auto pt-2 scrollbar-hide px-5">
+							<h1 className="px-5 text-3xl font-bold text-neutral-100">Your Local Mixes</h1>
+							<div className="relative z-0 mt-5 grid auto-cols-[12rem] grid-flow-col gap-6 overflow-x-auto px-5 pt-2 scrollbar-hide">
 								{featuredPlaylists.map((item) => (
 									<PlaylistCard item={item} key={item.id} />
 								))}
@@ -348,8 +352,8 @@ export default function MainScreen(): React.JSX.Element {
 					{/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */}
 					{mixes ? (
 						<>
-							<h1 className="text-3xl font-bold text-neutral-100 px-5">Your Top Mixes</h1>
-							<div className="relative mt-5 z-0 grid auto-cols-[12rem] grid-flow-col gap-6 overflow-x-auto pt-2 scrollbar-hide px-5">
+							<h1 className="px-5 text-3xl font-bold text-neutral-100">Your Top Mixes</h1>
+							<div className="relative z-0 mt-5 grid auto-cols-[12rem] grid-flow-col gap-6 overflow-x-auto px-5 pt-2 scrollbar-hide">
 								{mixes.map((item) => (
 									<PlaylistCard item={item} key={item.id} />
 								))}
@@ -360,8 +364,8 @@ export default function MainScreen(): React.JSX.Element {
 					)}
 					{recentlyPlayed?.length ? (
 						<>
-							<h1 className="text-3xl font-bold text-neutral-100 px-5">Recently Played</h1>
-							<div className="relative mt-5 z-0 grid auto-cols-[12rem] grid-flow-col gap-6 overflow-x-auto pt-2 scrollbar-hide px-5">
+							<h1 className="px-5 text-3xl font-bold text-neutral-100">Recently Played</h1>
+							<div className="relative z-0 mt-5 grid auto-cols-[12rem] grid-flow-col gap-6 overflow-x-auto px-5 pt-2 scrollbar-hide">
 								{recentlyPlayed.map((item) => (
 									<SongCard item={item} key={item.played_at} />
 								))}
@@ -372,8 +376,8 @@ export default function MainScreen(): React.JSX.Element {
 					)}
 					{topArtists?.length ? (
 						<>
-							<h1 className="text-3xl font-bold text-neutral-100 px-5">Top Artists</h1>
-							<div className="relative mt-5 z-0 grid auto-cols-[12rem] grid-flow-col gap-6 overflow-x-auto pt-2 scrollbar-hide px-5">
+							<h1 className="px-5 text-3xl font-bold text-neutral-100">Top Artists</h1>
+							<div className="relative z-0 mt-5 grid auto-cols-[12rem] grid-flow-col gap-6 overflow-x-auto px-5 pt-2 scrollbar-hide">
 								{topArtists.map((item) => (
 									<ArtistCard item={item} key={item.id} />
 								))}
@@ -387,7 +391,7 @@ export default function MainScreen(): React.JSX.Element {
 			{playlistContent && (
 				// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 				<div className={`flex flex-col ${playlistContent && color.color} h-2/3 to-transparent p-5`}>
-					<div className="flex flex-row space-x-5 mt-10">
+					<div className="mt-10 flex flex-row space-x-5">
 						<Image
 							src={
 								instanceofSingleArtistResponse(user)
@@ -396,14 +400,14 @@ export default function MainScreen(): React.JSX.Element {
 									? "/liked.png"
 									: playlistContent.images[0].url
 							}
-							className="rounded-md object-contain w-48 h-48 md:w-48 md:h-48 lg:w-56 lg:h-56"
+							className="h-48 w-48 rounded-md object-contain md:h-48 md:w-48 lg:h-56 lg:w-56"
 							width={300}
 							height={300}
 							alt={"Playlist Image"}
 						/>
 						<div className="flex flex-col items-start justify-end">
-							<h6 className="text-sm text-gray-200 font-bold">Playlist</h6>
-							<h1 className="text-3xl mt-5 sm:text-lg md:text-2xl lg:text-4xl text-gray-200 font-bold">
+							<h6 className="text-sm font-bold text-gray-200">Playlist</h6>
+							<h1 className="mt-5 text-3xl font-bold text-gray-200 sm:text-lg md:text-2xl lg:text-4xl">
 								{instanceofSingleArtistResponse(user)
 									? // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 									  user?.name ?? ""
@@ -412,11 +416,11 @@ export default function MainScreen(): React.JSX.Element {
 									: playlistContent.name}
 							</h1>
 							{instanceofSinglePlaylistResponse(playlistContent) && playlistContent.description && (
-								<p className="text-sm text-gray-300 hidden lg:block font-semibold mt-2">
+								<p className="mt-2 hidden text-sm font-semibold text-gray-300 lg:block">
 									{parseAnchorTags(playlistContent.description)}
 								</p>
 							)}
-							<div className="hidden sm:flex flex-row items-center space-x-2 mt-4">
+							<div className="mt-4 hidden flex-row items-center space-x-2 sm:flex">
 								{user?.images && user.images[0]?.url && (
 									<Image
 										src={user.images[0].url}
@@ -427,7 +431,7 @@ export default function MainScreen(): React.JSX.Element {
 									/>
 								)}
 								{instanceofSinglePlaylistResponse(playlistContent) ? (
-									<p className="text-sm text-gray-200 font-bold">
+									<p className="text-sm font-bold text-gray-200">
 										{playlistContent.owner.display_name} • {playlistContent.tracks.total} Songs •{" "}
 										{playlistContent.followers.total
 											.toString()
@@ -435,7 +439,7 @@ export default function MainScreen(): React.JSX.Element {
 										Followers
 									</p>
 								) : (
-									<p className="text-sm text-gray-200 font-bold">
+									<p className="text-sm font-bold text-gray-200">
 										{/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
 										{/* @ts-expect-error */}
 										{user?.display_name ?? user?.name} •{" "}
@@ -445,7 +449,7 @@ export default function MainScreen(): React.JSX.Element {
 							</div>
 						</div>
 					</div>
-					<div className="py-5 mt-5">
+					<div className="mt-5 py-5">
 						{instanceofSinglePlaylistResponse(playlistContent)
 							? playlistContent.tracks.items.map((track, index) => (
 									<Song track={track} index={index} key={track.track?.id} />

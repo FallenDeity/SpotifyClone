@@ -80,27 +80,27 @@ export default function Player(): React.JSX.Element {
 		setIsPlaying(!isPlaying);
 	};
 	return (
-		<div className="fixed bottom-0 sm:px-5 px-2 flex flex-row justify-between items-center bg-gradient-to-b from-black to-gray-900 w-full h-20 z-10">
+		<div className="fixed bottom-0 z-10 flex h-20 w-full flex-row items-center justify-between bg-gradient-to-b from-black to-gray-900 px-2 sm:px-5">
 			<div className="flex flex-row items-center space-x-3">
 				{Track?.album.images[0]?.url ? (
 					<Image
 						src={Track.album.images[0].url}
-						className="rounded-md object-contain w-12 h-12"
+						className="h-12 w-12 rounded-md object-contain"
 						width={50}
 						height={50}
 						alt={"Album Image"}
 					/>
 				) : (
-					<div className="w-12 h-12 bg-gray-300 rounded-md" />
+					<div className="h-12 w-12 rounded-md bg-gray-300" />
 				)}
 				<div className="flex flex-col">
-					<p className="text-sm text-gray-300 font-semibold w-[9rem] truncate">{Track?.name ?? "No Track"}</p>
-					<p className="text-xs text-gray-400 w-[9rem] truncate">
+					<p className="w-[9rem] truncate text-sm font-semibold text-gray-300">{Track?.name ?? "No Track"}</p>
+					<p className="w-[9rem] truncate text-xs text-gray-400">
 						{Track?.artists.map((artist) => artist.name).join(", ") ?? "No Artist"}
 					</p>
 				</div>
 			</div>
-			<div className="flex-col items-center hidden sm:flex">
+			<div className="hidden flex-col items-center sm:flex">
 				<div className="flex flex-row items-center space-x-3">
 					<BiShuffle
 						onClick={(): void => {
@@ -108,25 +108,25 @@ export default function Player(): React.JSX.Element {
 							void spotifyApi.setShuffle(!isShuffle);
 							setIsShuffle(!isShuffle);
 						}}
-						className={`w-4 h-4 text-gray-300 cursor-pointer hover:text-white transition duration-300
+						className={`h-4 w-4 cursor-pointer text-gray-300 transition duration-300 hover:text-white
 						${
 							/* eslint-disable-next-line @typescript-eslint/restrict-template-expressions */
 							isShuffle && "text-green-500"
 						}`}
 					/>
 					<AiFillStepBackward
-						className="w-5 h-5 text-gray-300 cursor-pointer hover:text-white transition duration-300"
+						className="h-5 w-5 cursor-pointer text-gray-300 transition duration-300 hover:text-white"
 						onClick={(): void => {
 							if (!trackID) return;
 							void spotifyApi.skipToPrevious();
 						}}
 					/>
 					<PlayIcon
-						className="w-8 h-8 text-gray-300 cursor-pointer hover:text-white transition duration-300"
+						className="h-8 w-8 cursor-pointer text-gray-300 transition duration-300 hover:text-white"
 						onClick={handlePlayPause}
 					/>
 					<AiFillStepForward
-						className="w-5 h-5 text-gray-300 cursor-pointer hover:text-white transition duration-300"
+						className="h-5 w-5 cursor-pointer text-gray-300 transition duration-300 hover:text-white"
 						onClick={(): void => {
 							if (!trackID) return;
 							void spotifyApi.skipToNext();
@@ -138,14 +138,14 @@ export default function Player(): React.JSX.Element {
 							void spotifyApi.setRepeat(!isRepeat ? "track" : "off");
 							setIsRepeat(!isRepeat);
 						}}
-						className={`w-4 h-4 text-gray-300 cursor-pointer hover:text-white transition duration-300
+						className={`h-4 w-4 cursor-pointer text-gray-300 transition duration-300 hover:text-white
 						${
 							/* eslint-disable-next-line @typescript-eslint/restrict-template-expressions */
 							isRepeat && "text-green-500"
 						}`}
 					/>
 				</div>
-				<div className="flex flex-row items-center space-x-3 mt-1 sm:w-[18rem] md:w-[25rem] lg:w-[32rem]">
+				<div className="mt-1 flex flex-row items-center space-x-3 sm:w-[18rem] md:w-[25rem] lg:w-[32rem]">
 					<p className="text-xs text-gray-300">{millisecondsToMinutesAndSeconds(progressInterval)}</p>
 					<Slider
 						value={Number((progressInterval / (Track?.duration_ms ?? 0)) * 100)}
@@ -158,10 +158,10 @@ export default function Player(): React.JSX.Element {
 					<p className="text-xs text-gray-300">{millisecondsToMinutesAndSeconds(Track?.duration_ms ?? 0)}</p>
 				</div>
 			</div>
-			<div className="hidden sm:flex flex-row items-center space-x-3 sm:w-[6rem] md:w-[8rem]">
+			<div className="hidden flex-row items-center space-x-3 sm:flex sm:w-[6rem] md:w-[8rem]">
 				<HiQueueList
 					size={34}
-					className="text-gray-300 cursor-pointer hover:text-white transition duration-300"
+					className="cursor-pointer text-gray-300 transition duration-300 hover:text-white"
 				/>
 				<VolumeIcon
 					size={34}
@@ -169,7 +169,7 @@ export default function Player(): React.JSX.Element {
 						void spotifyApi.setVolume(volume === 0 ? 100 : 0);
 						setVolume(volume === 0 ? 100 : 0);
 					}}
-					className="text-gray-300 cursor-pointer hover:text-white transition duration-300"
+					className="cursor-pointer text-gray-300 transition duration-300 hover:text-white"
 				/>
 				<Slider
 					value={volume}
@@ -181,7 +181,7 @@ export default function Player(): React.JSX.Element {
 			</div>
 			<div className="flex flex-row items-center space-x-3 sm:hidden">
 				<PlayIcon
-					className="w-8 h-8 text-gray-300 cursor-pointer hover:text-white transition duration-300"
+					className="h-8 w-8 cursor-pointer text-gray-300 transition duration-300 hover:text-white"
 					onClick={handlePlayPause}
 				/>
 			</div>

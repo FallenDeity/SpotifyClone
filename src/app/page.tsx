@@ -12,8 +12,8 @@ export const metadata = {
 export default function Home(): React.JSX.Element {
 	return (
 		<>
-			<div className="bg-black h-screen overflow-hidden">
-				<main className="flex flex-row p-2 sm:p-5 h-[90vh] w-full">
+			<div className="h-screen overflow-hidden bg-black">
+				<main className="flex h-[90vh] w-full flex-row p-2 sm:p-5">
 					<SideBar />
 					<MainScreen />
 				</main>

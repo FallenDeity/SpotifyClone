@@ -60,8 +60,8 @@ export default function SideBar(): React.JSX.Element {
 		}
 	}, [playlists, dailyMixContent, setDailyMixContent]);
 	return (
-		<div className="text-sm hidden sm:flex flex-col">
-			<div className="space-y-3 bg-opacity-10 bg-white rounded-md p-3">
+		<div className="hidden flex-col text-sm sm:flex">
+			<div className="space-y-3 rounded-md bg-white bg-opacity-10 p-3">
 				<button
 					onClick={(): void => {
 						setSearch(false);
@@ -72,7 +72,7 @@ export default function SideBar(): React.JSX.Element {
 					className={`flex items-center space-x-3 hover:text-white ${
 						pathname === "/" && playlistID === "" && !search ? "text-gray-100" : "text-gray-400"
 					}`}>
-					<HomeIcon className="w-6 h-6" />
+					<HomeIcon className="h-6 w-6" />
 					<p>Home</p>
 				</button>
 				<button
@@ -86,7 +86,7 @@ export default function SideBar(): React.JSX.Element {
 					className={`flex items-center space-x-3 hover:text-white ${
 						playlistID === "liked-songs" ? "text-gray-100" : "text-gray-400"
 					}`}>
-					<HeartIcon className="w-6 h-6" />
+					<HeartIcon className="h-6 w-6" />
 					<p>Liked Songs</p>
 				</button>
 				<button
@@ -100,23 +100,23 @@ export default function SideBar(): React.JSX.Element {
 					className={`flex items-center space-x-3 hover:text-white ${
 						search ? "text-gray-100" : "text-gray-400"
 					}`}>
-					<MagnifyingGlassIcon className="w-6 h-6" />
+					<MagnifyingGlassIcon className="h-6 w-6" />
 					<p>Search</p>
 				</button>
 			</div>
-			<div className="bg-white bg-opacity-10 p-4 mt-5 rounded-t">
+			<div className="mt-5 rounded-t bg-white bg-opacity-10 p-4">
 				<div className="flex flex-row items-center space-x-3 text-gray-400">
-					<MusicalNoteIcon className="w-6 h-6" />
+					<MusicalNoteIcon className="h-6 w-6" />
 					<p>Your Library</p>
 					<div className="flex-grow" />
-					<PlusIcon className="w-6 h-6 hover:text-white cursor-pointer" />
+					<PlusIcon className="h-6 w-6 cursor-pointer hover:text-white" />
 				</div>
 			</div>
-			<div className="bg-white flex-grow bg-opacity-10 space-y-3 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600 p-4 rounded-b sm:w-[30vw] lg:w-[25vw]">
+			<div className="flex-grow space-y-3 overflow-y-auto rounded-b bg-white bg-opacity-10 p-4 scrollbar-thin scrollbar-thumb-gray-600 sm:w-[30vw] lg:w-[25vw]">
 				{playlists.map((data) => (
 					<div
 						key={data.id}
-						className={`flex items-center space-x-3 hover:text-white text-gray-400 cursor-pointer ${
+						className={`flex cursor-pointer items-center space-x-3 text-gray-400 hover:text-white ${
 							playlistID === data.id ? "text-white" : ""
 						}`}
 						onClick={(): void => {
@@ -131,7 +131,7 @@ export default function SideBar(): React.JSX.Element {
 							alt={data.name}
 							width={40}
 							height={40}
-							className={"rounded-md w-10 h-10"}
+							className={"h-10 w-10 rounded-md"}
 						/>
 						<p className="truncate">{data.name}</p>
 					</div>

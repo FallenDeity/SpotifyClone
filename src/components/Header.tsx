@@ -45,13 +45,13 @@ export default function Header({ color }: { color: { headerColor: string } }): R
 	const setHeaderOpacity = useRecoilState(HeaderAtomState)[1];
 	return (
 		<div
-			className={`flex flex-row items-center justify-between sticky top-0 z-50 p-3 ${headerOpacity} backdrop-filter backdrop-blur-sm ${
+			className={`sticky top-0 z-50 flex flex-row items-center justify-between p-3 ${headerOpacity} backdrop-blur-sm backdrop-filter ${
 				// eslint-disable-next-line @typescript-eslint/restrict-template-expressions,@typescript-eslint/no-unnecessary-condition
 				playlistContent && color.headerColor
 			}`}>
-			<div className="flex-row px-5 items-center space-x-4 hidden sm:flex">
+			<div className="hidden flex-row items-center space-x-4 px-5 sm:flex">
 				<ChevronLeftIcon
-					className={`w-8 h-8 p-1 text-gray-200 bg-black rounded-full hover:text-white transition duration-300 cursor-pointer bg-opacity-50 hover:bg-opacity-75 ${
+					className={`h-8 w-8 cursor-pointer rounded-full bg-black bg-opacity-50 p-1 text-gray-200 transition duration-300 hover:bg-opacity-75 hover:text-white ${
 						playlistHistoryIndex === 0 ? "opacity-50" : ""
 					}`}
 					onClick={(): void => {
@@ -63,7 +63,7 @@ export default function Header({ color }: { color: { headerColor: string } }): R
 					}}
 				/>
 				<ChevronRightIcon
-					className={`w-8 h-8 p-1 text-gray-200 bg-black rounded-full hover:text-white transition duration-300 cursor-pointer bg-opacity-50 hover:bg-opacity-75 ${
+					className={`h-8 w-8 cursor-pointer rounded-full bg-black bg-opacity-50 p-1 text-gray-200 transition duration-300 hover:bg-opacity-75 hover:text-white ${
 						playlistHistoryIndex === playlistHistory.length - 1 ? "opacity-50" : ""
 					}`}
 					onClick={(): void => {
@@ -75,9 +75,9 @@ export default function Header({ color }: { color: { headerColor: string } }): R
 					}}
 				/>
 			</div>
-			<div className="flex-row items-center space-x-4 sm:hidden flex px-5">
+			<div className="flex flex-row items-center space-x-4 px-5 sm:hidden">
 				<HomeIcon
-					className="w-8 h-8 p-2 text-gray-200 bg-black rounded-full hover:text-white transition duration-300 cursor-pointer bg-opacity-50 hover:bg-opacity-75"
+					className="h-8 w-8 cursor-pointer rounded-full bg-black bg-opacity-50 p-2 text-gray-200 transition duration-300 hover:bg-opacity-75 hover:text-white"
 					onClick={(): void => {
 						setSearch(false);
 						setPlaylistID("");
@@ -86,7 +86,7 @@ export default function Header({ color }: { color: { headerColor: string } }): R
 					}}
 				/>
 				<HeartIcon
-					className="w-8 h-8 p-2 text-gray-200 bg-black rounded-full hover:text-white transition duration-300 cursor-pointer bg-opacity-50 hover:bg-opacity-75"
+					className="h-8 w-8 cursor-pointer rounded-full bg-black bg-opacity-50 p-2 text-gray-200 transition duration-300 hover:bg-opacity-75 hover:text-white"
 					onClick={(): void => {
 						setSearch(false);
 						setPlaylistHistory((prev) => [...prev, "liked-songs"]);
@@ -96,7 +96,7 @@ export default function Header({ color }: { color: { headerColor: string } }): R
 					}}
 				/>
 				<MagnifyingGlassIcon
-					className="w-8 h-8 p-2 text-gray-200 bg-black rounded-full hover:text-white transition duration-300 cursor-pointer bg-opacity-50 hover:bg-opacity-75"
+					className="h-8 w-8 cursor-pointer rounded-full bg-black bg-opacity-50 p-2 text-gray-200 transition duration-300 hover:bg-opacity-75 hover:text-white"
 					onClick={(): void => {
 						setSearch(true);
 						setPlaylistID("");
@@ -105,12 +105,12 @@ export default function Header({ color }: { color: { headerColor: string } }): R
 					}}
 				/>
 			</div>
-			<div className="flex-row items-center space-x-2 flex px-5">
+			<div className="flex flex-row items-center space-x-2 px-5">
 				{/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */}
 				{session ? (
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild>
-							<div className="flex flex-row items-center space-x-3 cursor-pointer bg-neutral-600 bg-opacity-50 rounded-full p-1 hover:bg-opacity-70 transition duration-300">
+							<div className="flex cursor-pointer flex-row items-center space-x-3 rounded-full bg-neutral-600 bg-opacity-50 p-1 transition duration-300 hover:bg-opacity-70">
 								<Image
 									src={session.user?.image ?? "/user.png"}
 									className="rounded-full object-contain"
@@ -119,33 +119,33 @@ export default function Header({ color }: { color: { headerColor: string } }): R
 									alt={"User Image"}
 								/>
 								<p className="text-sm text-gray-200">{session.user?.name}</p>
-								<ChevronDownIcon className="w-4 h-4 text-gray-200" />
+								<ChevronDownIcon className="h-4 w-4 text-gray-200" />
 							</div>
 						</DropdownMenuTrigger>
-						<DropdownMenuContent className="bg-neutral-800 rounded-lg border-0">
-							<DropdownMenuLabel className="text-sm text-gray-200 text-center font-semibold">
+						<DropdownMenuContent className="rounded-lg border-0 bg-neutral-800">
+							<DropdownMenuLabel className="text-center text-sm font-semibold text-gray-200">
 								Account
 							</DropdownMenuLabel>
 							<DropdownMenuSeparator className="bg-neutral-600" />
-							<DropdownMenuItem className="text-sm text-gray-200 focus:bg-neutral-600 focus:text-white space-x-3">
-								<UserIcon className="w-4 h-4 mr-2" />
+							<DropdownMenuItem className="space-x-3 text-sm text-gray-200 focus:bg-neutral-600 focus:text-white">
+								<UserIcon className="mr-2 h-4 w-4" />
 								Profile
 							</DropdownMenuItem>
-							<DropdownMenuItem className="text-sm text-gray-200 focus:bg-neutral-600 focus:text-white space-x-3">
-								<CogIcon className="w-4 h-4 mr-2" />
+							<DropdownMenuItem className="space-x-3 text-sm text-gray-200 focus:bg-neutral-600 focus:text-white">
+								<CogIcon className="mr-2 h-4 w-4" />
 								Settings
 							</DropdownMenuItem>
 							<DropdownMenuItem
-								className="text-sm text-gray-200 focus:bg-neutral-600 focus:text-white space-x-3"
+								className="space-x-3 text-sm text-gray-200 focus:bg-neutral-600 focus:text-white"
 								onClick={(): void => void signOut()}>
-								<LogOutIcon className="w-4 h-4 mr-2" />
+								<LogOutIcon className="mr-2 h-4 w-4" />
 								Logout
 							</DropdownMenuItem>
 						</DropdownMenuContent>
 					</DropdownMenu>
 				) : (
 					<button
-						className="px-4 py-2 font-semibold text-sm text-gray-200 rounded-full hover:bg-white hover:text-black transition duration-300"
+						className="rounded-full px-4 py-2 text-sm font-semibold text-gray-200 transition duration-300 hover:bg-white hover:text-black"
 						onClick={(): void => router.push("/login")}>
 						Login
 					</button>

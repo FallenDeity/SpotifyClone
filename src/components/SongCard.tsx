@@ -9,10 +9,10 @@ export default function SongCard({ item }: { item: SpotifyApi.PlayHistoryObject 
 	const setTrackID = useRecoilState(TrackIDAtomState)[1];
 	return (
 		<div
-			className="group col-span-1 rounded-md bg-neutral-600 bg-opacity-10 cursor-pointer p-3 hover:bg-opacity-20 transition-all duration-300 ease-in-out"
+			className="group col-span-1 cursor-pointer rounded-md bg-neutral-600 bg-opacity-10 p-3 transition-all duration-300 ease-in-out hover:bg-opacity-20"
 			onClick={(): void => setTrackID(item.track.id)}>
 			<div className="flex w-full flex-col gap-2">
-				<div className="relative aspect-square w-full overflow-hidden rounded-xl shadow-neutral-900 shadow-lg transition-all duration-300 ease-in-out group">
+				<div className="group relative aspect-square w-full overflow-hidden rounded-xl shadow-lg shadow-neutral-900 transition-all duration-300 ease-in-out">
 					<Image
 						src={item.track.album.images[0].url}
 						className="rounded-md"
@@ -20,12 +20,12 @@ export default function SongCard({ item }: { item: SpotifyApi.PlayHistoryObject 
 						height={300}
 						alt={"Playlist Image"}
 					/>
-					<div className="absolute right-3 bottom-3 hidden group-hover:flex flex-row gap-2 items-center">
-						<PlayIcon className="h-10 w-10 text-black rounded-full bg-green-500 p-2" />
+					<div className="absolute bottom-3 right-3 hidden flex-row items-center gap-2 group-hover:flex">
+						<PlayIcon className="h-10 w-10 rounded-full bg-green-500 p-2 text-black" />
 					</div>
 				</div>
-				<h1 className="text-white text-lg font-bold mt-5 truncate">{item.track.name}</h1>
-				<p className="text-gray-400 font-semibold text-sm mt-2 line-clamp-2">
+				<h1 className="mt-5 truncate text-lg font-bold text-white">{item.track.name}</h1>
+				<p className="mt-2 line-clamp-2 text-sm font-semibold text-gray-400">
 					{item.track.artists.map((artist) => artist.name).join(", ")}
 				</p>
 			</div>
