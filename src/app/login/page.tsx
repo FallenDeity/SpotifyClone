@@ -21,6 +21,10 @@ export default async function Login(): Promise<React.JSX.Element> {
 						Object.values(providers).map((provider) => (
 							<ProviderButton key={provider.name} id={provider.id} name={provider.name} callback={"/"} />
 						))}
+					<p className="text-center text-sm text-neutral-600">
+						Demo Account: demo93923@gmail.com
+						<br /> <span className="text-center">Password: Demo@1234</span>
+					</p>
 				</div>
 			</div>
 		</div>
